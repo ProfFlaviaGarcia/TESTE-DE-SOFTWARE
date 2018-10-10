@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <title>Tipo do Triângulo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" rev="stylesheet" type="text/css" href="..\css\base.css" />
+</head>
+<body>
+    <script type="text/javascript">
+        function ehTriangulo(a, b, c){
+            if (a < (b + c) && b < (a + c) && c < (a + b)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        function obterTipo() {
+            document.getElementById("msg_A");
+            document.getElementById("msg_B");
+            document.getElementById("msg_C");
+            document.getElementById("campo_tipo").value = "";
+            
+            a = parseInt(document.getElementById("campo_A").value);
+            if(isNaN(a)){
+                document.getElementById("msg_A");
+				alert('Informe um número inteiro para o Lado A');
+                return;
+            }
+            b = parseInt(document.getElementById("campo_B").value);
+            if(isNaN(b)){
+                document.getElementById("msg_B");
+				alert('Informe um número inteiro para o Lado B');
+                return;
+            }
+            c = parseInt(document.getElementById("campo_C").value);
+            if(isNaN(c)){
+                document.getElementById("msg_C");
+				alert('Informe um número inteiro para o lado C');
+                return;
+            }
+
+            tipo = "";
+            if (!ehTriangulo(a,b,c)) {
+                tipo = "Não é um Triângulo";
+            } else if (a == b && b == c) { // todos os lados iguais
+                tipo = "EQUILATERO";
+            } else if (a != b && a != c && b != c) { // todos os lados diferentes
+                tipo = "ESCALENO";
+            } else {
+                tipo = "ISOSCELES"; // dois lados iguais
+            }
+
+            document.getElementById("campo_tipo").value = tipo;
+        }
+        
+    </script>
+    <form>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+        <table align='center'>
+            <tr>
+                <td>Lado A: </td>
+                <td><input type="text" id="campo_A"/> </td>
+                <td><div id="msg_A"></div> </td>
+            </tr>
+            <tr>
+                <td>Lado B: </td>
+                <td><input type="text" id="campo_B"/> </td>
+                <td><div id="msg_B"></div> </td>
+            </tr>
+            <tr>
+                <td>Lado C: </td>
+                <td><input type="text" id="campo_C"/> </td>
+                <td><div id="msg_C"></div> </td>
+            </tr>
+            <tr>
+                <td><input type="button" id="bt_calc" value="Calcular" onclick="obterTipo()"/> </td>
+                <td colspan='2'><input type="reset" id="bt_limpar" value="Limpar" /> </td>
+            </tr>
+            <tr>
+                <td>Tipo do Triângulo: </td>
+                <td colspan='2'><input type="text" id="campo_tipo" value="" disabled/> </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
